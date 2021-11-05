@@ -1,0 +1,10 @@
+{
+  "presets": [
+    "@babel/preset-env", // Latest JavaScript
+    "@babel/preset-react", // React
+    "@babel/preset-typescript" // TypeScript
+  ],
+  "plugins": [
+    "babel-plugin-styled-components"
+  ]
+}

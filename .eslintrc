@@ -1,0 +1,60 @@
+{
+  "env": {
+    "browser": true,
+    "node": true,
+    "es2021": true
+  },
+  "plugins": ["react", "@typescript-eslint", "prettier"],
+  "extends": [
+    "airbnb-typescript", // Uses the recommended rules from Airbnb
+    "airbnb/hooks", // Uses the recommended rules from Airbnb
+    "plugin:react/recommended", // Uses the recommended rules from @eslint-plugin-react
+    "plugin:@typescript-eslint/recommended", // Uses the recommended rules from @typescript-eslint/eslint-plugin
+    "prettier", // Uses eslint-config-prettier to disable ESLint rules from @typescript-eslint/eslint-plugin that would conflict with prettier
+    "plugin:prettier/recommended" // Enables eslint-plugin-prettier and eslint-config-prettier. This will display prettier errors as ESLint errors. Make sure this is always the last configuration in the extends array.
+  ],
+  "parser": "@typescript-eslint/parser", // Specifies the ESLint parser
+  "parserOptions": {
+    "project": "./tsconfig.json", // Source file for @typescript-eslint/parser
+    "sourceType": "module", // Allows for the use of imports
+    "createDefaultProgram": true,
+    "ecmaVersion": 12, // Allows for the parsing of modern ECMAScript features
+    "ecmaFeatures": {
+      "jsx": true, // Allows for the parsing of JSX
+      "modules": true
+    }
+  },
+  "rules": {
+    "@typescript-eslint/no-implied-eval": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-var-requires": 0,
+    "react/jsx-props-no-spreading": "off",
+    "no-underscore-dangle": "off",
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true, "optionalDependencies": false, "peerDependencies": false}],
+    "linebreak-style": ["error", "unix"],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "react/jsx-sort-props": [
+      "error",
+      {
+        "noSortAlphabetically": true,
+        "ignoreCase": true,
+        "callbacksLast": true,
+        "shorthandLast": false,
+        "reservedFirst": ["key"]
+      }
+    ],
+    "react/jsx-max-props-per-line": [
+      "error",
+      {
+        "maximum": 3,
+        "when": "always"
+      }
+    ],
+    "react/jsx-pascal-case": ["error"]
+  },
+  "ignorePatterns": ["ext/**", "node_modules/**", "src/**/*.cjs"]
+}

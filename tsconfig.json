@@ -1,0 +1,43 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "outDir": "./dist",
+    "paths": {
+      "components/*": ["src/ts/components/*"],
+      "pages/*": ["src/ts/pages/*"],
+    },
+
+    // https://www.sitepoint.com/react-with-typescript-best-practices/
+    "allowJs": true, // Allow JavaScript files to be compiled
+    "skipLibCheck": true, // Skip type checking of all declaration files
+    "esModuleInterop": true, // Disables namespace imports (import * as fs from "fs") and enables CJS/AMD/UMD style imports (import fs from "fs")
+    "allowSyntheticDefaultImports": true, // Allow default imports from modules with no default export
+    "strict": true, // Enable all strict type checking options
+    "forceConsistentCasingInFileNames": true, // Disallow inconsistently-cased references to the same file.
+    "target": "es6",
+    "module": "commonjs", // Specify module code generation
+    "moduleResolution": "node", // Resolve modules using Node.js style
+    "resolveJsonModule": true, // Include modules imported with .json extension
+    "noEmit": true, // Do not emit output (meaning do not compile code, only perform type checking)
+    "jsx": "react", // Support JSX in .tsx files
+    "sourceMap": true, // Generate corrresponding .map file
+    "declaration": true, // Generate corresponding .d.ts file
+    "noUnusedLocals": true, // Report errors on unused locals
+    "noUnusedParameters": true, // Report errors on unused parameters
+    "experimentalDecorators": true, // Enables experimental support for ES decorators
+    "noFallthroughCasesInSwitch": true, // Report errors for fallthrough cases in switch statement
+    "lib": ["dom", "dom.iterable", "esnext", "es2019.array"],
+    "typeRoots": ["src/@types", "./node_modules/@types"]
+  },
+
+  "include": ["src", "src/react-app-env.d.ts"],
+  "exclude": [
+    "node_modules",
+    "build",
+    "scripts",
+    "acceptance-tests",
+    "webpack",
+    "jest",
+    "src/setupTests.ts",
+    "./node_modules/**/*"]
+}
