@@ -1,8 +1,8 @@
-import React from "react";
-import styled from "styled-components";
-import { headerItem } from "../../shared/helpers";
+import React from 'react';
+import styled from 'styled-components';
+import { headerItem } from '../../shared/helpers';
 
-import HeaderDarkButtonIcon from "./Icon";
+import HeaderDarkButtonIcon from './Icon';
 
 const DarkButton = styled.span`
   ${headerItem};

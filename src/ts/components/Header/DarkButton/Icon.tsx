@@ -1,13 +1,13 @@
-import React from "react";
-import styled from "styled-components";
-import { transition } from "../../shared/helpers";
+import React from 'react';
+import styled from 'styled-components';
+import { transition } from '../../shared/helpers';
 
 const Icon = styled.svg`
   width: 20px;
   height: 20px;
 
   & path {
-    ${transition("fill")};
+    ${transition('fill')};
 
     fill: ${(props) => props.theme.mutedText};
   }
