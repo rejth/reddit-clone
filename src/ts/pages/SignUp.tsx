@@ -1,15 +1,18 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { useMutation } from 'react-query';
+import { toast } from 'react-hot-toast';
 
 import Form from '../components/shared/Form';
 import Label from '../components/shared/Form/Label';
 import Input, { InputWrapper } from '../components/shared/Form/Input';
 import SubmitButton from '../components/shared/Form/SubmitButton';
 import Error from '../components/shared/Form/Error';
-import { signupUser } from '../../services/redditService';
+import { signupUser, checkIfUsernameTaken } from '../../services/redditService';
 
 interface IFormInputs {
-  name: string;
+  username: string;
   email: string;
   password: string;
   confirm: string;
@@ -19,14 +22,28 @@ const SignUp: React.FC = (): JSX.Element => {
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors },
   } = useForm<IFormInputs>({ mode: 'onBlur' });
 
-  const onSubmit: SubmitHandler<IFormInputs> = async (e: any): Promise<any> => {
-    e.preventDefault();
-    const { email, password } = e.target.elements;
-    const userCreds = await signupUser({ email: email.value, password: password.value });
-    return userCreds;
+  const history = useHistory();
+  const mutation = useMutation(signupUser, {
+    onSuccess: () => {
+      history.push('/');
+      toast.success('Sign up successful!');
+    },
+    onError: (error: any) => {
+      toast.error(error.message);
+    },
+  });
+
+  const onSubmit: SubmitHandler<IFormInputs> = (data: any): void => {
+    const { username, email, password } = data;
+    mutation.mutate({
+      username,
+      email,
+      password,
+    });
   };
 
   return (
@@ -35,10 +52,13 @@ const SignUp: React.FC = (): JSX.Element => {
         <Label>Username</Label>
         <Input
           type="text"
-          error={!!errors?.name?.message}
-          {...register('name', { required: 'Username is required' })}
+          error={!!errors?.username?.message}
+          {...register('username', {
+            required: 'Username is required',
+            validate: checkIfUsernameTaken,
+          })}
         />
-        <Error>{errors?.name?.message}</Error>
+        <Error>{errors?.username?.message}</Error>
       </InputWrapper>
 
       <InputWrapper>
@@ -66,7 +86,13 @@ const SignUp: React.FC = (): JSX.Element => {
         <Input
           type="password"
           error={!!errors?.confirm?.message}
-          {...register('confirm', { required: 'Password is required' })}
+          {...register('confirm', {
+            required: 'Password is required',
+            validate: (value: string) => {
+              const { password } = getValues();
+              return password === value || 'Password should match!';
+            },
+          })}
         />
         <Error>{errors?.confirm?.message}</Error>
       </InputWrapper>

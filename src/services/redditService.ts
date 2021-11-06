@@ -1,29 +1,41 @@
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from './firebase';
+import { collection, query, where, getDocs, addDoc } from 'firebase/firestore/lite';
+import { auth, db } from './firebase';
 
 // User services
 export async function loginUser() {
   return {};
 }
 
-export async function signupUser({ email, password }: any) {
+export async function createUser({ user, username }: any) {
+  const col = collection(db, 'users');
+  await addDoc(col, {
+    uid: user.uid,
+    username,
+    email: user.email,
+  });
+}
+
+export async function signupUser({ username, email, password }: any) {
   const userCreds = await createUserWithEmailAndPassword(auth, email, password);
-  return userCreds;
+  await createUser({
+    user: userCreds.user,
+    username,
+  });
+}
+
+export async function checkIfUsernameTaken(username: string) {
+  const col = collection(db, 'users');
+  const q = query(col, where('username', '==', username));
+  const { empty } = await getDocs(q);
+  return empty || 'Username already taken!';
 }
 
 export function useAuthUser() {
   return {};
 }
 
-export async function checkIfUsernameTaken() {
-  return {};
-}
-
 export async function logOut() {
-  return {};
-}
-
-export async function createUser() {
   return {};
 }
 
