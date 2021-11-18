@@ -1,5 +1,9 @@
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { collection, query, where, getDocs, addDoc } from 'firebase/firestore/lite';
+import { useEffect } from 'react';
+import { createUserWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
+import { collection, query, where, getDocs, getDoc, doc, addDoc } from 'firebase/firestore/lite';
+import shallow from 'zustand/shallow';
+
+import useStore from '../ts/store';
 import { auth, db } from './firebase';
 
 // User services
@@ -32,7 +36,37 @@ export async function checkIfUsernameTaken(username: string) {
 }
 
 export function useAuthUser() {
-  return {};
+  const [setUser, resetUser] = useStore((s) => [s.setUser, s.resetUser], shallow);
+
+  useEffect(() => {
+    async function getUser(user: any) {
+      const col = collection(db, 'users');
+      const q = query(col, where('uid', '==', user.uid));
+      const allDocs = await getDocs(q);
+      const docId = allDocs.docs[0].id;
+
+      if (!docId) {
+        resetUser();
+      } else {
+        const userRef = doc(db, 'users', docId);
+        const userDoc = await getDoc(userRef);
+
+        if (userDoc.exists()) {
+          setUser(userDoc.data());
+        } else {
+          resetUser();
+        }
+      }
+    }
+
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      getUser(user);
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, [setUser, resetUser]);
 }
 
 export async function logOut() {

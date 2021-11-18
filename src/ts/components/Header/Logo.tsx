@@ -19,6 +19,6 @@ const Logo = styled(Link)`
   }
 `;
 
-const HeaderLogo = () => <Logo to="/">Reddit</Logo>;
+const HeaderLogo: React.FC = () => <Logo to="/">Reddit</Logo>;
 
 export default HeaderLogo;

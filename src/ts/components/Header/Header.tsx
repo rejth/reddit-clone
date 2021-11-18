@@ -29,7 +29,7 @@ const Wrapper = styled.header`
   }
 `;
 
-export default function Header(): JSX.Element {
+const Header: React.FC = () => {
   return (
     <Wrapper>
       <HeaderLogo />
@@ -38,4 +38,6 @@ export default function Header(): JSX.Element {
       <HeaderNavLink to="/signup">Sign Up</HeaderNavLink>
     </Wrapper>
   );
-}
+};
+
+export default Header;

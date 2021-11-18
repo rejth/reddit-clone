@@ -18,7 +18,7 @@ interface IFormInputs {
   confirm: string;
 }
 
-const SignUp: React.FC = (): JSX.Element => {
+const SignUp: React.FC = () => {
   const {
     register,
     handleSubmit,

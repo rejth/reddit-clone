@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+
+import useStore from '../../../store';
 import { headerItem } from '../../shared/helpers';
 
 import HeaderDarkButtonIcon from './Icon';
@@ -17,10 +19,14 @@ const DarkButton = styled.span`
   }
 `;
 
-export default function HeaderDarkButton() {
+const HeaderDarkButton: React.FC = () => {
+  const toggleTheme = useStore((state) => state.toggleTheme);
+
   return (
-    <DarkButton>
+    <DarkButton onClick={() => toggleTheme()}>
       <HeaderDarkButtonIcon />
     </DarkButton>
   );
-}
+};
+
+export default HeaderDarkButton;
