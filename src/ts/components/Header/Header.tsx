@@ -1,9 +1,17 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
+import { useMutation } from 'react-query';
+import { toast } from 'react-hot-toast';
 import styled from 'styled-components';
+import shallow from 'zustand/shallow';
 
 import HeaderLogo from './Logo';
 import HeaderDarkButton from './DarkButton/DarkButton';
 import HeaderNavLink from './NavLink';
+import HeaderUsernameButton from './UsernameButton/UsernameButton';
+
+import useStore from '../../store';
+import { logOutUser } from '../../../services/redditService';
 
 const Wrapper = styled.header`
   position: sticky;
@@ -30,12 +38,37 @@ const Wrapper = styled.header`
 `;
 
 const Header: React.FC = () => {
+  const [user, resetUser]: any = useStore((s) => [s.user, s.resetUser], shallow);
+
+  const history = useHistory();
+  const mutation = useMutation(logOutUser, {
+    onSuccess: () => {
+      resetUser();
+      history.push('/login');
+      toast.success('Logged out successful!', { duration: 5000, icon: '👋' });
+    },
+    onError: () => {
+      toast.error('Error logged out', { duration: 5000, icon: '🤢' });
+    },
+  });
+
   return (
     <Wrapper>
       <HeaderLogo />
       <HeaderDarkButton />
-      <HeaderNavLink to="/login">Log in</HeaderNavLink>
-      <HeaderNavLink to="/signup">Sign Up</HeaderNavLink>
+      {user ? (
+        <>
+          <HeaderUsernameButton username={user.username} />
+          <HeaderNavLink to="/logout" onClick={() => mutation.mutate()}>
+            Log out
+          </HeaderNavLink>
+        </>
+      ) : (
+        <>
+          <HeaderNavLink to="/login">Log in</HeaderNavLink>
+          <HeaderNavLink to="/signup">Sign Up</HeaderNavLink>
+        </>
+      )}
     </Wrapper>
   );
 };

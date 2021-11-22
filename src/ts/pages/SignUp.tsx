@@ -9,6 +9,7 @@ import Label from '../components/shared/Form/Label';
 import Input, { InputWrapper } from '../components/shared/Form/Input';
 import SubmitButton from '../components/shared/Form/SubmitButton';
 import Error from '../components/shared/Form/Error';
+
 import { signupUser, checkIfUsernameTaken } from '../../services/redditService';
 
 interface IFormInputs {
@@ -30,10 +31,10 @@ const SignUp: React.FC = () => {
   const mutation = useMutation(signupUser, {
     onSuccess: () => {
       history.push('/');
-      toast.success('Sign up successful!');
+      toast.success('Sign up successful!', { duration: 5000, icon: '✋' });
     },
     onError: (error: any) => {
-      toast.error(error.message);
+      toast.error(error.message, { duration: 5000, icon: '🤢' });
     },
   });
 

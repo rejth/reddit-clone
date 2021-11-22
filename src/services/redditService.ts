@@ -1,5 +1,10 @@
 import { useEffect } from 'react';
-import { createUserWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
+} from 'firebase/auth';
 import { collection, query, where, getDocs, getDoc, doc, addDoc } from 'firebase/firestore/lite';
 import shallow from 'zustand/shallow';
 
@@ -7,8 +12,12 @@ import useStore from '../ts/store';
 import { auth, db } from './firebase';
 
 // User services
-export async function loginUser() {
-  return {};
+export async function loginUser({ email, password }: any) {
+  return signInWithEmailAndPassword(auth, email, password);
+}
+
+export async function logOutUser() {
+  return signOut(auth);
 }
 
 export async function createUser({ user, username }: any) {
@@ -47,15 +56,16 @@ export function useAuthUser() {
 
       if (!docId) {
         resetUser();
-      } else {
-        const userRef = doc(db, 'users', docId);
-        const userDoc = await getDoc(userRef);
+        return;
+      }
 
-        if (userDoc.exists()) {
-          setUser(userDoc.data());
-        } else {
-          resetUser();
-        }
+      const userRef = doc(db, 'users', docId);
+      const userDoc = await getDoc(userRef);
+
+      if (userDoc.exists()) {
+        setUser(userDoc.data());
+      } else {
+        resetUser();
       }
     }
 
@@ -67,10 +77,6 @@ export function useAuthUser() {
       unsubscribe();
     };
   }, [setUser, resetUser]);
-}
-
-export async function logOut() {
-  return {};
 }
 
 // Posting services
