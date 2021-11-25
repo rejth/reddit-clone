@@ -19,17 +19,6 @@ module.exports = merge(commonConfig, {
 
   module: {
     rules: [
-      // sass/sccs
-      {
-        test: /\.s[ac]ss$/i,
-        use: [
-          'style-loader', // creates `style` nodes from JS strings
-          'css-loader', // translates CSS into CommonJS
-          'postcss-loader',
-          'sass-loader', // compiles Sass to CSS
-        ],
-      },
-
       // css
       {
         test: /\.css$/,

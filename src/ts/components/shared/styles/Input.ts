@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { transition } from '../helpers';
+import { transition } from './helpers';
 
 interface IInput {
   error: boolean;

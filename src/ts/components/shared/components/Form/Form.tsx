@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import LoadingIndicator from '../LoadingIndicator';
-import { transition } from '../helpers';
+import { transition } from '../../styles/helpers';
 
 interface IForm {
   wide: boolean | undefined;

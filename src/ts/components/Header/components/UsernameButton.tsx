@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import HeaderNavLink from '../NavLink';
-import { wideFont } from '../../shared/helpers';
+import HeaderNavLink from '../styles/NavLink';
+import { wideFont } from '../../shared/styles/helpers';
 
 interface HeaderUsernameButtonProps {
   username: string;

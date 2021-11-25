@@ -5,11 +5,11 @@ import { useMutation } from 'react-query';
 import { toast } from 'react-hot-toast';
 import shallow from 'zustand/shallow';
 
-import Form from '../components/shared/Form';
-import Label from '../components/shared/Form/Label';
-import Input, { InputWrapper } from '../components/shared/Form/Input';
-import SubmitButton from '../components/shared/Form/SubmitButton';
-import Error from '../components/shared/Form/Error';
+import Form from '../components/shared/components/Form';
+import Label from '../components/shared/styles/Label';
+import Input, { InputWrapper } from '../components/shared/styles/Input';
+import SubmitButton from '../components/shared/components/Form/SubmitButton';
+import Error from '../components/shared/styles/Error';
 
 import useStore from '../store';
 import { loginUser } from '../../services/redditService';

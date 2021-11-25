@@ -229,6 +229,6 @@ blockquote {
 }
 
 a {
-  background: transparent; // IE10
+  background: transparent;
   text-decoration: none;
 }

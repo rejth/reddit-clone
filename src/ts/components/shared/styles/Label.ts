@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { smallFont } from '../helpers';
+import { smallFont } from './helpers';
 
 const Label = styled.label`
   ${smallFont};

@@ -6,12 +6,12 @@ import styled from 'styled-components';
 import shallow from 'zustand/shallow';
 
 import HeaderLogo from './Logo';
-import HeaderDarkButton from './DarkButton/DarkButton';
-import HeaderNavLink from './NavLink';
-import HeaderUsernameButton from './UsernameButton/UsernameButton';
+import HeaderDarkButton from './DarkButton';
+import HeaderNavLink from '../styles/NavLink';
+import HeaderUsernameButton from './UsernameButton';
 
-import useStore from '../../store';
-import { logOutUser } from '../../../services/redditService';
+import useStore from '../../../store';
+import { logOutUser } from '../../../../services/redditService';
 
 const Wrapper = styled.header`
   position: sticky;

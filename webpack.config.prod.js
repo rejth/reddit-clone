@@ -12,18 +12,6 @@ module.exports = merge(commonConfig, {
 
   module: {
     rules: [
-      // sass/sccs
-      {
-        test: /\.s[ac]ss$/i,
-        use: [
-          // generate separate CSS files rather than injecting CSS into our HTML as style tags
-          MiniCssExtractPlugin.loader,
-          'css-loader', // translates CSS into CommonJS
-          'postcss-loader',
-          'sass-loader', // compiles Sass to CSS
-        ],
-      },
-
       // css
       {
         test: /\.css$/,

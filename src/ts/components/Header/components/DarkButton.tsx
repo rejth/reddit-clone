@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import useStore from '../../../store';
-import { headerItem } from '../../shared/helpers';
+import { headerItem } from '../../shared/styles/helpers';
 
 import HeaderDarkButtonIcon from './Icon';
 
