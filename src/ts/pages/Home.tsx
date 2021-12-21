@@ -26,20 +26,30 @@ const HomeMainSection = styled.main`
   min-width: 0;
 `;
 
-const Home: React.FC = () => {
-  return (
-    <Wrapper>
-      <HomeMainSection>
-        <Switch>
-          <Route path="/categories/:category" component={PostList} />
-          <Route path="/categories/:category/:postId" component={PostDetails} />
-          <Route path="/user/:username" component={PostList} />
-          <Route path="/" component={PostList} />
-        </Switch>
-      </HomeMainSection>
-      <Route component={Sidebar} />
-    </Wrapper>
-  );
-};
+const Home: React.FC = () => (
+  <Wrapper>
+    <HomeMainSection>
+      <Switch>
+        <Route
+          path="/categories/:category"
+          component={PostList}
+        />
+        <Route
+          path="/categories/:category/:postId"
+          component={PostDetails}
+        />
+        <Route
+          path="/user/:username"
+          component={PostList}
+        />
+        <Route
+          path="/"
+          component={PostList}
+        />
+      </Switch>
+    </HomeMainSection>
+    <Route component={Sidebar} />
+  </Wrapper>
+);
 
 export default Home;

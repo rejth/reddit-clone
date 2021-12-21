@@ -12,8 +12,6 @@ const Header = styled.span`
   color: ${(props) => props.theme.mutedText};
 `;
 
-const SidebarCategoryListHeader: React.FC = () => {
-  return <Header>Categories</Header>;
-};
+const SidebarCategoryListHeader: React.FC = () => <Header>Categories</Header>;
 
 export default SidebarCategoryListHeader;

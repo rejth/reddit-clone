@@ -48,7 +48,10 @@ const SignUp: React.FC = () => {
   };
 
   return (
-    <Form isLoading={false} onSubmit={handleSubmit(onSubmit)}>
+    <Form
+      isLoading={false}
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <InputWrapper>
         <Label>Username</Label>
         <Input

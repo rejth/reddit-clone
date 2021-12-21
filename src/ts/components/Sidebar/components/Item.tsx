@@ -25,7 +25,10 @@ const SidebarCategoryListItem: React.FC<CategoryListProps> = ({ category }) => {
   const isAll = category === 'all';
 
   return (
-    <Item exact={isAll} to={isAll ? '/' : `/categories/${category}`}>
+    <Item
+      exact={isAll}
+      to={isAll ? '/' : `/categories/${category}`}
+    >
       {category}
     </Item>
   );

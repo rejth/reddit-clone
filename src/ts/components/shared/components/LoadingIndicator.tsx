@@ -33,12 +33,10 @@ const Wrapper = styled.div`
   background-color: ${(props) => props.theme.foreground};
 `;
 
-const LoadingIndicator: React.FC = () => {
-  return (
-    <Wrapper>
-      <Spinner />
-    </Wrapper>
-  );
-};
+const LoadingIndicator: React.FC = () => (
+  <Wrapper>
+    <Spinner />
+  </Wrapper>
+);
 
 export default LoadingIndicator;

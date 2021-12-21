@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { transition } from './helpers';
 
-interface IInput {
-  error: boolean;
+interface IInputProps {
+  error?: boolean;
   theme: any;
 }
 
@@ -12,28 +12,26 @@ export const InputWrapper = styled.div`
   width: 100%;
 `;
 
-const Input = styled.input`
+const Input = styled.input.attrs((props) => ({
+  type: props.type,
+  placeholder: props.placeholder,
+  defaultValue: props.defaultValue,
+})) <IInputProps>`
   ${transition('border', 'box-shadow')};
 
-  --border: ${(props: IInput) => (props.error ? props.theme.error : props.theme.accent)};
-  --shadow: ${(props: IInput) =>
-    props.error ? `${props.theme.error}4d` : `${props.theme.accent}4d`};
+  --border: ${(props) => (props.error ? props.theme.error : props.theme.accent)};
+  --shadow: ${(props) => (props.error ? `${props.theme.error}4d` : `${props.theme.accent}4d`)};
 
   display: block;
-  ${(props: IInput) =>
-    props.error
-      ? `
-    border: 1px solid var(--border)
-    `
-      : `
-    border: 1px solid ${props.theme.border}
-  `};
+  ${(props) => (props.error
+    ? 'border: 1px solid var(--border)'
+    : `border: 1px solid ${props.theme.border}`)};
   border-radius: 3px;
   width: 100%;
   padding: 8px;
-  background-color: ${(props: IInput) => props.theme.inputBackground};
+  background-color: ${(props) => props.theme.inputBackground};
   font-size: 15px;
-  color: ${(props: IInput) => props.theme.normalText};
+  color: ${(props) => props.theme.normalText};
   appearance: none;
   outline: none;
   resize: vertical;

@@ -1,5 +1,6 @@
 const path = require('path');
 const { merge } = require('webpack-merge');
+
 const commonConfig = require('./webpack.config.common');
 
 module.exports = merge(commonConfig, {
@@ -15,19 +16,5 @@ module.exports = merge(commonConfig, {
     overlay: true,
     open: true,
     historyApiFallback: true,
-  },
-
-  module: {
-    rules: [
-      // css
-      {
-        test: /\.css$/,
-        use: [
-          'style-loader', // creates `style` nodes from JS strings
-          'css-loader', // translates CSS into CommonJS
-          'postcss-loader',
-        ],
-      },
-    ],
   },
 });

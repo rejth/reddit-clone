@@ -8,7 +8,6 @@ import { ThemeProvider } from 'styled-components';
 import useStore from '../../store';
 import GlobalStyle from '../../../styles/global';
 import theme from '../../../styles/theme';
-import '../../../styles/index.css';
 
 interface AppProvidersProps {
   children: ReactNode;

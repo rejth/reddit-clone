@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
 import NavLink from '../../shared/styles/NavLink';
-import { headerItem, wideFont, link, transition } from '../../shared/styles/helpers';
+import {
+  headerItem, wideFont, link, transition,
+} from '../../shared/styles/helpers';
 
 const HeaderNavLink = styled(NavLink)`
   ${headerItem};

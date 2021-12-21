@@ -1,8 +1,10 @@
 const path = require('path');
+
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackNotifierPlugin = require('webpack-notifier');
 const CopyPlugin = require('copy-webpack-plugin');
+
 require('babel-polyfill');
 
 module.exports = {

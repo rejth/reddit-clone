@@ -23,12 +23,10 @@ const HeaderUsernameText = styled.span`
   color: ${(props) => props.theme.mutedText};
 `;
 
-const HeaderUsernameButton: React.FC<HeaderUsernameButtonProps> = ({ username }) => {
-  return (
-    <Wrapper to={`/user/${username}`}>
-      <HeaderUsernameText>{username}</HeaderUsernameText>
-    </Wrapper>
-  );
-};
+const HeaderUsernameButton: React.FC<HeaderUsernameButtonProps> = ({ username }) => (
+  <Wrapper to={`/user/${username}`}>
+    <HeaderUsernameText>{username}</HeaderUsernameText>
+  </Wrapper>
+);
 
 export default HeaderUsernameButton;

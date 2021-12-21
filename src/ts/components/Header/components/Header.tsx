@@ -59,7 +59,10 @@ const Header: React.FC = () => {
       {user ? (
         <>
           <HeaderUsernameButton username={user.username} />
-          <HeaderNavLink to="/logout" onClick={() => mutation.mutate()}>
+          <HeaderNavLink
+            to="/logout"
+            onClick={() => mutation.mutate()}
+          >
             Log out
           </HeaderNavLink>
         </>

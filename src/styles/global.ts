@@ -1,8 +1,49 @@
 import { createGlobalStyle } from 'styled-components';
+import reset from 'styled-reset';
 
 const GlobalStyle = createGlobalStyle`
+  ${reset}
+
+  @import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,500,600,700');
+
+  html {
+    box-sizing: border-box;
+  }
+
+  *,
+  *:before,
+  *:after {
+    padding: 0;
+    margin: 0;
+    box-sizing: inherit;
+  }
+
   body {
+    font-family: 'IBM Plex Sans', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
+    min-height: 100%;
+    padding-bottom: 48px;
+    -webkit-font-smoothing: antialiased;
     background-color: ${(props: any) => props.theme.pageBackground};
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    overflow-x: hidden;
+    margin: 0;
+  }
+
+  h1 h2 h3 h4 h5 h6 p {
+    padding: 0;
+    margin: 0;
+  }
+
+  img {
+    max-width: 100%;
   }
 `;
 

@@ -11,12 +11,13 @@ const CreatePostButton = styled(Button)`
   text-align: center;
 `;
 
-const SidebarCreatePostButton: React.FC = () => {
-  return (
-    <CreatePostButton as={Link} to="/create">
-      Create post
-    </CreatePostButton>
-  );
-};
+const SidebarCreatePostButton: React.FC = () => (
+  <CreatePostButton
+    as={Link}
+    to="/create"
+  >
+    Create post
+  </CreatePostButton>
+);
 
 export default SidebarCreatePostButton;

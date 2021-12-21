@@ -1,7 +1,5 @@
 import React from 'react';
 
-const PostList: React.FC = () => {
-  return <></>;
-};
+const PostList: React.FC = () => <></>;
 
 export default PostList;

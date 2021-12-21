@@ -37,8 +37,7 @@ const StyledForm = styled.form`
   flex-direction: column;
   align-items: flex-start;
 
-  ${(props: any) =>
-    props.isLoading && 'filter: grayscale(0.5) blur(5px) opacity(0.6); pointer-events: none'};
+  ${(props: any) => props.isLoading && 'filter: grayscale(0.5) blur(5px) opacity(0.6); pointer-events: none'};
 `;
 
 const Form = ({ isLoading, wide, ...props }: any) => (

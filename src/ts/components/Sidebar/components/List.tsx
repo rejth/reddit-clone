@@ -19,7 +19,10 @@ const SidebarCategoryList: React.FC = () => {
     <CategoryList>
       <SidebarCategoryListHeader />
       {['all', ...categories].map((category: string) => (
-        <SidebarCategoryListItem key={category} category={category} />
+        <SidebarCategoryListItem
+          key={category}
+          category={category}
+        />
       ))}
     </CategoryList>
   );

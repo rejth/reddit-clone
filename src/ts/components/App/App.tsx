@@ -16,11 +16,26 @@ const App: React.FC = () => {
     <>
       <Route component={Header} />
       <Switch>
-        <Route path="/login" component={Login} />
-        <Route path="/logout" component={Login} />
-        <Route path="/signup" component={SignUp} />
-        <Route path="/create" component={CreatePost} />
-        <Route path="/" component={Home} />
+        <Route
+          path="/login"
+          component={Login}
+        />
+        <Route
+          path="/logout"
+          component={Login}
+        />
+        <Route
+          path="/signup"
+          component={SignUp}
+        />
+        <Route
+          path="/create"
+          component={CreatePost}
+        />
+        <Route
+          path="/"
+          component={Home}
+        />
       </Switch>
     </>
   );

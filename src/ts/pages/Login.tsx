@@ -32,7 +32,7 @@ const Login: React.FC = () => {
   const mutation = useMutation(loginUser, {
     onSuccess: (user: any) => {
       setUser(user);
-      history.push(`/`);
+      history.push('/');
       toast.success('Login successful!', { duration: 5000, icon: '👌' });
     },
     onError: (error: any) => {
@@ -61,7 +61,10 @@ const Login: React.FC = () => {
   };
 
   return (
-    <Form isLoading={false} onSubmit={handleSubmit(onSubmit)}>
+    <Form
+      isLoading={false}
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <InputWrapper>
         <Label>Email</Label>
         <Input

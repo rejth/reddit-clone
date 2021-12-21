@@ -1,12 +1,20 @@
 import { useEffect } from 'react';
+import shallow from 'zustand/shallow';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
 } from 'firebase/auth';
-import { collection, query, where, getDocs, getDoc, doc, addDoc } from 'firebase/firestore/lite';
-import shallow from 'zustand/shallow';
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  getDoc,
+  doc,
+  addDoc,
+} from 'firebase/firestore/lite';
 
 import useStore from '../ts/store';
 import { auth, db } from './firebase';
