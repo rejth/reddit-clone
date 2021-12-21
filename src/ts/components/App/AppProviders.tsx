@@ -13,19 +13,25 @@ interface AppProvidersProps {
   children: ReactNode;
 }
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 const AppProviders: React.FC<AppProvidersProps> = ({ children }) => {
   const isDarkTheme = useStore((state) => state.isDarkTheme);
 
   return (
     <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} />
       <Toaster position="bottom-right" />
       <ThemeProvider theme={theme(isDarkTheme)}>
         <GlobalStyle />
         <BrowserRouter>{children}</BrowserRouter>
       </ThemeProvider>
-      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 };

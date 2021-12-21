@@ -52,7 +52,7 @@ const Login: React.FC = () => {
     },
   });
 
-  const onSubmit: SubmitHandler<IFormInputs> = (data: any): void => {
+  const onSubmit: SubmitHandler<IFormInputs> = (data: IFormInputs): void => {
     const { email, password } = data;
     mutation.mutate({
       email,

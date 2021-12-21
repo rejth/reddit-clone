@@ -14,6 +14,7 @@ import {
   getDoc,
   doc,
   addDoc,
+  orderBy,
 } from 'firebase/firestore/lite';
 
 import useStore from '../ts/store';
@@ -29,8 +30,8 @@ export async function logOutUser() {
 }
 
 export async function createUser({ user, username }: any) {
-  const col = collection(db, 'users');
-  await addDoc(col, {
+  const users = collection(db, 'users');
+  await addDoc(users, {
     uid: user.uid,
     username,
     email: user.email,
@@ -46,8 +47,10 @@ export async function signupUser({ username, email, password }: any) {
 }
 
 export async function checkIfUsernameTaken(username: string) {
-  const col = collection(db, 'users');
-  const q = query(col, where('username', '==', username));
+  // find document
+  const users = collection(db, 'users');
+  const q = query(users, where('username', '==', username));
+  // check if the user exists
   const { empty } = await getDocs(q);
   return empty || 'Username already taken!';
 }
@@ -57,16 +60,18 @@ export function useAuthUser() {
 
   useEffect(() => {
     async function getUser(user: any) {
-      const col = collection(db, 'users');
-      const q = query(col, where('uid', '==', user.uid));
-      const allDocs = await getDocs(q);
-      const docId = allDocs.docs[0].id;
+      // find document
+      const users = collection(db, 'users');
+      const q = query(users, where('uid', '==', user.uid));
+      const { docs } = await getDocs(q);
+      const docId = docs[0]?.id || null;
 
       if (!docId) {
         resetUser();
         return;
       }
 
+      // get document data
       const userRef = doc(db, 'users', docId);
       const userDoc = await getDoc(userRef);
 
@@ -88,15 +93,35 @@ export function useAuthUser() {
 }
 
 // Posting services
-export async function createPost() {
-  return {};
+export async function createPost(post: any) {
+  // create document
+  const posts = collection(db, 'posts');
+  const { id } = await addDoc(posts, post);
+  // get document data
+  const newPostRef = doc(db, 'posts', id);
+  const newPost = await getDoc(newPostRef);
+
+  return { id, ...newPost.data() };
 }
 
-export async function getPost() {
-  return {};
+export async function getDocuments(ref: any) {
+  const { docs } = await getDocs(ref);
+  const documents = docs.map((document: any) => ({
+    id: document.id,
+    reference: document.ref,
+    ...document.data(),
+  }));
+  return documents;
 }
 
 export async function getPosts() {
+  const posts = collection(db, 'posts');
+  const q = query(posts, orderBy('score', 'desc'));
+  const data = await getDocuments(q);
+  return data;
+}
+
+export async function getPost() {
   return {};
 }
 
@@ -109,10 +134,6 @@ export async function getPostsByCategory() {
 }
 
 export async function deletePost() {
-  return {};
-}
-
-export async function getDocuments() {
   return {};
 }
 
